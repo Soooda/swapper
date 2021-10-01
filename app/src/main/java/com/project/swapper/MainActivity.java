@@ -3,9 +3,12 @@ package com.project.swapper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -28,5 +31,15 @@ public class MainActivity extends AppCompatActivity {
                 this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
 //        List<ScanResult> results = mWifiManager.getScanResults();
+
+        Button btnGraphView = findViewById(R.id.graph_view);
+
+        btnGraphView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GraphActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
