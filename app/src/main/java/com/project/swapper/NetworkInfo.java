@@ -37,5 +37,15 @@ public class NetworkInfo extends AppCompatActivity {
 
         routerView = (TextView) findViewById(R.id.router);
         routerView.setText(routerText);
+
+        Button btnBack = findViewById(R.id.btn_back);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NetworkInfo.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
