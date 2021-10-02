@@ -26,27 +26,44 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintTop_toBottomOf="parent" />
 
-    <EditText
-        android:id="@+id/networkName"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/networklabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_marginStart="10dp"
         android:text="@string/name_text"
+        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+    <TextView
+        android:id="@+id/networkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical|end"
+        android:textSize="18sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:background="@color/Dim_Grey"
+        app:layout_goneMarginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/networkName" />
 
     <Button
         android:id="@+id/btn_forget"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/forget_btn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -57,8 +74,8 @@
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/join_btn"
         app:layout_constraintTop_toBottomOf="@+id/btn_forget"
         app:layout_constraintRight_toRightOf="parent"
@@ -69,62 +86,112 @@
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/join_sw"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_join" />
 
-    <EditText
-        android:id="@+id/ipAddress"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+    <TextView
+        android:id="@+id/ipAddressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
-        android:ems="10"
-        android:inputType="text"
+        android:textSize="18sp"
         android:text="@string/ip_text"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sw_auto_join" />
+
+    <TextView
+        android:id="@+id/ipAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical|end"
+        android:textSize="18sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sw_auto_join" />
 
-    <EditText
-        android:id="@+id/subnetMask"
+    <View
         android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_height="2dp"
+        android:background="@color/Dim_Grey"
+        app:layout_goneMarginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddressLabel" />
+
+    <TextView
+        android:id="@+id/subnetMaskLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
         android:text="@string/subnet_text"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/ipAddressLabel" />
 
-    <EditText
-        android:id="@+id/router"
+    <TextView
+        android:id="@+id/subnetMask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical|end"
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddressLabel" />
+
+    <View
         android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="@string/router_text"
+        android:layout_height="2dp"
+        android:background="@color/Dim_Grey"
+        app:layout_goneMarginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subnetMask" />
+        app:layout_constraintTop_toBottomOf="@+id/subnetMaskLabel" />
+
+    <TextView
+        android:id="@+id/routerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:text="@string/subnet_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subnetMaskLabel" />
+
+    <TextView
+        android:id="@+id/router"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical|end"
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subnetMaskLabel" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:background="@color/Dim_Grey"
+        app:layout_goneMarginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/routerLabel" />
 
     <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="10dp"
         android:text="@string/back_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toRightOf="parent"

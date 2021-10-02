@@ -3,7 +3,7 @@
     <style name="Theme.Swapper" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/Davys_Grey</item>
-        <item name="colorPrimaryVariant">@color/Shadow</item>
+        <item name="colorPrimaryVariant">@color/Davys_Grey</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/Acid_Green</item>
