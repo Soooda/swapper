@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">swapper</string>
+    <string name="app_name">sWAPper</string>
+    <string name="name_text">Name</string>
+    <string name="forget_btn">Forget this network</string>
+    <string name="join_btn">Join this network</string>
+    <string name="join_sw">Auto join</string>
+    <string name="ip_text">IP Address</string>
+    <string name="subnet_text">Subnet Mask</string>
+    <string name="router_text">Router</string>
+    <string name="back_btn">Back</string>
 </resources>
