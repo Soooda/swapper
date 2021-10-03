@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +38,28 @@ public class NetworkInfo extends AppCompatActivity {
 
         routerView = (TextView) findViewById(R.id.router);
         routerView.setText(routerText);
+
+        Button btnForget = findViewById(R.id.btn_forget);
+
+        btnForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NetworkInfo.this, MainActivity.class);
+                Toast.makeText(getApplicationContext(), "Forget: " + networkNameText, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+
+        Button btnBlock = findViewById(R.id.btn_block);
+
+        btnBlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NetworkInfo.this, MainActivity.class);
+                Toast.makeText(getApplicationContext(), "Block: " + networkNameText, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
 
         Button btnBack = findViewById(R.id.btn_back);
 
