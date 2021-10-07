@@ -10,4 +10,5 @@
     <string name="router_text">Router</string>
     <string name="back_btn">Back</string>
     <string name="settings_btn">Settings</string>
+    <string name="password_text">Password</string>
 </resources>

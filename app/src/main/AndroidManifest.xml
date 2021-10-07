@@ -17,6 +17,9 @@
             android:name=".NetworkInfo"
             android:exported="true" />
         <activity
+            android:name=".Password"
+            android:exported="true" />
+        <activity
             android:name=".GraphActivity"
             android:exported="true" />
         <activity
