@@ -50,10 +50,12 @@
         app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
     <View
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/Dim_Grey"
         app:layout_goneMarginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/networkName" />
@@ -118,10 +120,12 @@
         app:layout_constraintTop_toBottomOf="@+id/sw_auto_join" />
 
     <View
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/Dim_Grey"
         app:layout_goneMarginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ipAddressLabel" />
@@ -149,10 +153,12 @@
         app:layout_constraintTop_toBottomOf="@+id/ipAddressLabel" />
 
     <View
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/Dim_Grey"
         app:layout_goneMarginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subnetMaskLabel" />
@@ -180,10 +186,12 @@
         app:layout_constraintTop_toBottomOf="@+id/subnetMaskLabel" />
 
     <View
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/Dim_Grey"
         app:layout_goneMarginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routerLabel" />
