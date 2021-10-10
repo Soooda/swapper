@@ -66,20 +66,20 @@ public class Password extends AppCompatActivity {
                 conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
 
                 // Add information to wifi manager
-                WifiManager wifiManager = (WifiManager)Context.getSystemService(Context.WIFI_SERVICE);
+                WifiManager wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
                 wifiManager.addNetwork(conf);
 //
-//                // establish connection
-//                List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-//                for( WifiConfiguration i : list ) {
-//                    if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
-//                        wifiManager.disconnect();
-//                        wifiManager.enableNetwork(i.networkId, true);
-//                        wifiManager.reconnect();
-//
-//                        break;
-//                    }
-//                }
+                // establish connection
+                List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+                for( WifiConfiguration i : list ) {
+                    if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+                        wifiManager.disconnect();
+                        wifiManager.enableNetwork(i.networkId, true);
+                        wifiManager.reconnect();
+
+                        break;
+                    }
+                }
                 System.out.println("Join network succeeded.");
             }
         });
