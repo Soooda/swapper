@@ -15,6 +15,7 @@ import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GraphActivity extends AppCompatActivity {
@@ -101,4 +102,6 @@ public class GraphActivity extends AppCompatActivity {
     public void stopSignal(View view) {
         mHandler.removeCallbacks(mTimer);
     }
+
+
 }
