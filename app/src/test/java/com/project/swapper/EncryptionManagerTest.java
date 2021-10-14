@@ -25,6 +25,7 @@ public class EncryptionManagerTest {
     public void testConstructor() {
         try {
             new EncryptionManager();
+            assertNotNull(manager);
         } catch (Exception e) {
             fail(e.getMessage());
         }
