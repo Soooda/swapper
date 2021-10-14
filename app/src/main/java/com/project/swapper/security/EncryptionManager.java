@@ -37,7 +37,8 @@ public class EncryptionManager {
      * @throws BadPaddingException Input string padded incorrectly!
      * @throws IllegalBlockSizeException Block size is illegal!
      */
-    public String encrypt(String plainText) throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    public String encrypt(String plainText) throws InvalidKeyException, BadPaddingException,
+            IllegalBlockSizeException {
         byte[] plainTextByte = plainText.getBytes();
         cipher.init(Cipher.ENCRYPT_MODE, secret);
         byte[] encryptedByte = cipher.doFinal(plainTextByte);
@@ -53,7 +54,8 @@ public class EncryptionManager {
      * @throws IllegalBlockSizeException Block size is illegal!
      * @throws BadPaddingException Input string padded incorrectly!
      */
-    public String decrypt(String encryptedText) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String decrypt(String encryptedText) throws InvalidKeyException,
+            IllegalBlockSizeException, BadPaddingException {
         byte[] encryptedByte = Base64.decode(encryptedText, Base64.DEFAULT);
         cipher.init(Cipher.DECRYPT_MODE, secret);
         byte[] decryptedByte = cipher.doFinal(encryptedByte);
