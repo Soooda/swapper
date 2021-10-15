@@ -20,6 +20,9 @@ public class MainActivity extends Activity {
 
     String[] networkName = {"networkName 1", "networkName 2", "networkName 3", "networkName 4", "networkName 5"};
 
+    boolean connectionStatus = false;
+    boolean storedInDB = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
