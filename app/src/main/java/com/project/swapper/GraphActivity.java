@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,7 +21,7 @@ import java.util.Random;
 
 public class GraphActivity extends AppCompatActivity {
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler = new Handler(Looper.getMainLooper());
     private BarGraphSeries<DataPoint> series;
 
     @Override
