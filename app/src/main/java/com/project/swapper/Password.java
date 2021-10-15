@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -46,7 +47,7 @@ public class Password extends AppCompatActivity {
             public void onClick(View v) {
                 // Set a testing wifi name and password
                 String networkSSID = "Niko";
-                String networkPass = "123456";
+                String networkPass = "12345678";
 
                 // Create wifi configuration instance
                 WifiConfiguration conf = new WifiConfiguration();
@@ -67,16 +68,22 @@ public class Password extends AppCompatActivity {
 
                 // Add information to wifi manager
                 WifiManager wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
-                wifiManager.addNetwork(conf);
+//                wifiManager.addNetwork(conf);
+//
+//                conf = new WifiConfiguration();
+//                conf.SSID = "\"okin\"";
+//                wifiManager.addNetwork(conf);
 //
                 // establish connection
                 List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+
                 for( WifiConfiguration i : list ) {
+                    Toast.makeText(getApplicationContext(), i.toString(), Toast.LENGTH_SHORT).show();
                     if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
                         wifiManager.disconnect();
                         wifiManager.enableNetwork(i.networkId, true);
                         wifiManager.reconnect();
-
+                        System.out.println("Selected network joined.");
                         break;
                     }
                 }
