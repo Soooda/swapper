@@ -6,43 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/graph_view"
-        android:text="graph view"
+        android:id="@+id/btm_toolbar"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:background="?attr/colorOnBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <ImageButton
+            android:id="@+id/graph_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_baseline_bar_chart_24" />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/my_toolbar"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
+        android:background="?attr/colorOnBackground"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/toolbar_title"
+            android:text="Wrapper"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textColor="@android:color/background_light"/>
+
+        <ImageButton
             android:id="@+id/Search"
-            android:text="Search"
-            android:layout_gravity="start"/>
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_baseline_search_24" />
+
+        <ImageButton
             android:id="@+id/Settings"
-            android:text="Settings"
-            android:layout_gravity="end"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_baseline_settings_24" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <ListView
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginBottom="?android:attr/actionBarSize"
         android:id="@+id/results_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
     </ListView>
 

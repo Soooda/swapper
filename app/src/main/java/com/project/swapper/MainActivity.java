@@ -1,16 +1,12 @@
 package com.project.swapper;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -28,11 +24,22 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnGraphView = findViewById(R.id.graph_view);
-
-
+        ImageButton btnGraphView = findViewById(R.id.graph_view);
 
         ListView resultsListView = (ListView) findViewById(R.id.results_listView);
+
+        resultsListView.setAdapter(NetworkList(networkName));
+
+        btnGraphView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GraphActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public SimpleAdapter NetworkList(String[] networkName){
         HashMap<String, String> name = new HashMap<>();
         for(int i = 0; i < networkName.length; i ++){
             name.put("network " + (i+1), "name: " + networkName[i]);
@@ -48,16 +55,8 @@ public class MainActivity extends Activity {
             resultsMap.put("Second Line", pair.getValue().toString());
             listItems.add(resultsMap);
         }
-        resultsListView.setAdapter(adapter);
-
-
-
-        btnGraphView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GraphActivity.class);
-                startActivity(intent);
-            }
-        });
+        return adapter;
     }
+
+
 }
