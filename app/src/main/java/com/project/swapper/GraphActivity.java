@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,11 +16,12 @@ import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GraphActivity extends AppCompatActivity {
 
-    private Handler mHandler = new Handler();
+    private Handler mHandler = new Handler(Looper.getMainLooper());
     private BarGraphSeries<DataPoint> series;
 
     @Override
@@ -101,4 +103,6 @@ public class GraphActivity extends AppCompatActivity {
     public void stopSignal(View view) {
         mHandler.removeCallbacks(mTimer);
     }
+
+
 }
