@@ -29,6 +29,11 @@ public class EncryptionManager {
         this.cipher = Cipher.getInstance("AES");
     }
 
+    public EncryptionManager(SecretKey secret) throws NoSuchAlgorithmException, NoSuchPaddingException {
+        this.secret = secret;
+        this.cipher = Cipher.getInstance("AES");
+    }
+
     /**
      * Encrypts a given string using AES.
      * @param plainText The input string
