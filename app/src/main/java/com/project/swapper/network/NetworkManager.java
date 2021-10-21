@@ -66,6 +66,11 @@ public class NetworkManager {
         return false;
     }
 
+    /**
+     * Connects to a particular WAP given BSSID and password.
+     * @param bssid The BSSID of the WAP.
+     * @param password The password of the WAP.
+     */
     public void add(String bssid, String password) {
         mWifiManager.disconnect();
         // Init
