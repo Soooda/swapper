@@ -30,14 +30,14 @@ public class NetworkManager {
     }
 
     /**
-     * Switchs on WIFI.
+     * Switches on WIFI.
      */
     public void enableWIFI() {
         mWifiManager.setWifiEnabled(true);
     }
 
     /**
-     * Switchs off WIFI.
+     * Switches off WIFI.
      */
     public void disableWIFI() {
         mWifiManager.disconnect();
