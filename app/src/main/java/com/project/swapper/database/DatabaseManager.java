@@ -111,4 +111,18 @@ public class DatabaseManager {
         }
         return false;
     }
+
+    /**
+     * Retrieves the password for a given BSSID.
+     * @param bssid The BSSID.
+     * @return The encrypted string of password.
+     */
+    public String getPassword(String bssid) {
+        for (WAPItem i : getWAPs()) {
+            if (i.getBssid().equals(bssid)) {
+                return i.getPassword();
+            }
+        }
+        return null;
+    }
 }
