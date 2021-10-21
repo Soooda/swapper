@@ -55,7 +55,7 @@ public class DatabaseManager {
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    dao.update(new WAPItem(bssid, password));
+                    dao.update(bssid, password);
                 }
             });
 

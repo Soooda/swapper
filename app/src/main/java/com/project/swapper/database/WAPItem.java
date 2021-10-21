@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "wap")
 public class WAPItem {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "ID")
     private int id;

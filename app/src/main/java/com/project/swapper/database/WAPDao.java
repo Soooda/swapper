@@ -15,8 +15,8 @@ public interface WAPDao {
     @Insert
     void insert(WAPItem wap);
 
-    @Update
-    void update(WAPItem wap);
+    @Query("UPDATE wap SET password = :password WHERE bssid = :bssid")
+    void update(String bssid, String password);
 
     @Query("SELECT * FROM wap")
     List<WAPItem> listAll();
