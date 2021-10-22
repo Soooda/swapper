@@ -13,4 +13,6 @@
     <string name="settings_btn">Settings</string>
     <string name="password_text">Password</string>
     <string name="cancel_btn">Cancel</string>
+    <string name="public_connect_btn">Allow Connection to Public Networks</string>
+    <string name="darkmode_btn">Dark Mode</string>
 </resources>
