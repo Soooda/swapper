@@ -5,6 +5,19 @@
     <color name="Shadow">#7B7263</color>
     <color name="Acid_Green">#C6CA53</color>
     <color name="Tea_Green">#C9DCB3</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="mint_green">#FFC5EBC3</color>
+    <color name="laurel_green">#FFB7C8B5</color>
+    <color name="lilac_luster">#FFA790A5</color>
+    <color name="mauve_taupe">#FF875C74</color>
+    <color name="eggplant">#FF54414E</color>
+
+    <color name="raisin_black">#FF272932</color>
+    <color name="steel_blue">#FF4d7ea8</color>
+    <color name="gray_web">#FF828489</color>
+    <color name="heliotrope_gray">#FF9e90a2</color>
+    <color name="light_steel_blue">#FFb6c2d9</color>
 </resources>

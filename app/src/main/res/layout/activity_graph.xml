@@ -6,15 +6,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".GraphActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@android:color/background_light"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/graphtitle"
-        android:text="WiFi Strengths (dBm)"
-        android:textSize="20dp"
-        android:textColor="@color/black"
+        android:text="@string/wifi_strengths_dbm"
+        android:textSize="20sp"
+        android:textColor="@color/raisin_black"
         android:textStyle="bold"
         />
 
@@ -35,7 +58,7 @@
             android:layout_weight="1"
             android:id="@+id/start"
             android:onClick="startSignal"
-            android:text="start"
+            android:text="@string/start"
             android:layout_margin="5dp"
             />
 
@@ -45,7 +68,7 @@
             android:layout_weight="1"
             android:id="@+id/stop"
             android:onClick="stopSignal"
-            android:text="stop"
+            android:text="@string/stop"
             android:layout_margin="5dp"
 
             />

@@ -15,4 +15,10 @@
     <string name="cancel_btn">Cancel</string>
     <string name="public_connect_btn">Allow Connection to Public Networks</string>
     <string name="darkmode_btn">Dark Mode</string>
+    <string name="search_button">Search button</string>
+    <string name="strength_button">Strength button</string>
+    <string name="settings_button">Settings button</string>
+    <string name="wifi_strengths_dbm">WiFi Strengths (dBm)</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
 </resources>
