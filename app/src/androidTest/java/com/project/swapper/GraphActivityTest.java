@@ -1,9 +1,12 @@
 package com.project.swapper;
 
 
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -35,65 +38,34 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(AndroidJUnit4ClassRunner.class)
 public class GraphActivityTest {
 
-    @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
-
     @Test
-    public void graphActivityTest() {
-        ViewInteraction materialButton = onView(
-                allOf(withId(R.id.graph_view), withText("graph view"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        materialButton.perform(click());
+    public void testLaunchGraphActivity() {
+        // Launch main activity
+        ActivityScenario activityScenario = ActivityScenario.launch(MainActivity.class);
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.graphtitle), withText("WiFi Strengths (dBm)"),
-                        withParent(withParent(withId(android.R.id.content))),
-                        isDisplayed()));
-        textView.check(matches(withText("WiFi Strengths (dBm)")));
+        // Click image button
+        ViewInteraction imageButton = onView(withId(R.id.graph_view));
+        imageButton.perform(click());
 
-        ViewInteraction view = onView(
-                allOf(withId(R.id.graph),
-                        withParent(withParent(withId(android.R.id.content))),
-                        isDisplayed()));
-        view.check(matches(isDisplayed()));
-
-        ViewInteraction button = onView(
-                allOf(withId(R.id.start), withText("START"),
-                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))),
-                        isDisplayed()));
-        button.check(matches(isDisplayed()));
-
-        ViewInteraction button2 = onView(
-                allOf(withId(R.id.stop), withText("STOP"),
-                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))),
-                        isDisplayed()));
-        button2.check(matches(isDisplayed()));
+        // Graph layout is displayed
+        ViewInteraction linearLayout = onView(withId(R.id.graph_layout));
+        linearLayout.check(matches(isDisplayed()));
     }
 
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
+    @Test
+    public void testWiFiStrengthsTextGraphActivity() {
+        // Launch main activity
+        ActivityScenario activityScenario = ActivityScenario.launch(MainActivity.class);
 
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
+        // Click image button
+        ViewInteraction imageButton = onView(withId(R.id.graph_view));
+        imageButton.perform(click());
 
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
+        // Text is WiFi Strengths (dBm)
+        ViewInteraction textView = onView(withId(R.id.graphtitle));
+        textView.check(matches(withText("WiFi Strengths (dBm)")));
     }
 }
