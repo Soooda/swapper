@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ public class DatabaseManager {
     public DatabaseManager(Context context) {
         WAPDatabase db = WAPDatabase.getDatabase(context);
         dao = db.wapDao();
+        // Makes sure "waps" will never be null.
+        waps = Collections.emptyList();
         read();
     }
 
