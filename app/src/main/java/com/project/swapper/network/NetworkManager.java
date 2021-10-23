@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
@@ -67,6 +68,24 @@ public class NetworkManager {
     }
 
     /**
+     * Gets the BSSID of current connected WAP.
+     * @return BSSID as a string.
+     */
+    public String getCurrentBSSID() {
+        WifiInfo info = mWifiManager.getConnectionInfo();
+        return info.getBSSID();
+    }
+
+    /**
+     * Gets the signal level of current connected WAP.
+     * @return Signal strength as an int.
+     */
+    public int getCurrentLevel() {
+        WifiInfo info = mWifiManager.getConnectionInfo();
+        return info.getRssi();
+    }
+
+    /**
      * Connects to a particular WAP given BSSID and password.
      * @param bssid The BSSID of the WAP.
      * @param password The password of the WAP.
@@ -75,7 +94,14 @@ public class NetworkManager {
         mWifiManager.disconnect();
         // Init
         WifiConfiguration conf = new WifiConfiguration();
-        conf.BSSID = bssid;
+
+        for (ScanResult s : mScanBuffer) {
+            if (s.BSSID.equals(bssid)) {
+                conf.SSID = s.SSID;
+                break;
+            }
+        }
+
         conf.status = WifiConfiguration.Status.DISABLED;
         conf.priority = 40;
 
@@ -95,7 +121,6 @@ public class NetworkManager {
             conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
             conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.NONE);
         }
-
 
         if (!password.equals("")) {
             conf.preSharedKey = String.format("\"%s\"", password);

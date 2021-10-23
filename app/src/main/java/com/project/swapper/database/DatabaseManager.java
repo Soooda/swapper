@@ -92,15 +92,6 @@ public class DatabaseManager {
     }
 
     /**
-     * Gets the cached data.
-     * @return The list of cached network configs.
-     */
-    public List<WAPItem> getWAPs() {
-        read();
-        return this.waps;
-    }
-
-    /**
      * Checks if a BSSID is saved in the database.
      * @param bssid BSSID.
      * @return True/False.
@@ -121,7 +112,7 @@ public class DatabaseManager {
      * @return The encrypted string of password.
      */
     public String getPassword(String bssid) {
-        for (WAPItem i : getWAPs()) {
+        for (WAPItem i : waps) {
             if (i.getBssid().equals(bssid)) {
                 return i.getPassword();
             }
@@ -129,6 +120,10 @@ public class DatabaseManager {
         return null;
     }
 
+    /**
+     * Deletes a entry from the database.
+     * @param bssid The BSSID.
+     */
     public void delete(String bssid) {
         // Use asynchronous task to run query on the background to avoid locking UI
         try {
