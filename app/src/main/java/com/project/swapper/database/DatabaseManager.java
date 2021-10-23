@@ -62,7 +62,7 @@ public class DatabaseManager {
             // Block and wait for the future to complete
 //            future.get();
         } catch (Exception e) {
-            Log.e("Database Insertion", e.getStackTrace().toString());
+            Log.e("Database Update", e.getStackTrace().toString());
         }
         read();
     }
@@ -84,7 +84,7 @@ public class DatabaseManager {
             // Block and wait for the future to complete
 //            future.get();
         } catch (Exception e) {
-            Log.e("Database Insertion", e.getStackTrace().toString());
+            Log.e("Database ReadAll", e.getStackTrace().toString());
         }
     }
 
@@ -124,5 +124,24 @@ public class DatabaseManager {
             }
         }
         return null;
+    }
+
+    public void delete(String bssid) {
+        // Use asynchronous task to run query on the background to avoid locking UI
+        try {
+            // Run a task specified by a Runnable Object asynchronously.
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    dao.delete(bssid);
+                }
+            });
+
+            // Block and wait for the future to complete
+//            future.get();
+        } catch (Exception e) {
+            Log.e("Database Deletion", e.getStackTrace().toString());
+        }
+        read();
     }
 }

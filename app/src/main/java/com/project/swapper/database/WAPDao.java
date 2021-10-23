@@ -18,6 +18,9 @@ public interface WAPDao {
     @Query("UPDATE wap SET password = :password WHERE bssid = :bssid")
     void update(String bssid, String password);
 
+    @Query("DELETE FROM wap WHERE bssid = :bssid")
+    void delete(String bssid);
+
     @Query("SELECT * FROM wap")
     List<WAPItem> listAll();
 
