@@ -10,7 +10,6 @@ import java.security.InvalidKeyException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 
 public class EncryptionManagerTest {
     private EncryptionManager manager;
@@ -27,17 +26,6 @@ public class EncryptionManagerTest {
         try {
             new EncryptionManager();
             assertNotNull(manager);
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testConstructor2() {
-        try {
-            KeyGenerator generator = KeyGenerator.getInstance("AES");
-            generator.init(128);
-            new EncryptionManager(generator.generateKey());
         } catch (Exception e) {
             fail(e.getMessage());
         }
