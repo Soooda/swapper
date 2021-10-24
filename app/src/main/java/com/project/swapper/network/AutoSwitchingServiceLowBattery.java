@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AutoSwitchingService extends Service {
-    private static final int ID_SERVICE = 101;
-    private final long DELAY = 100;
-    private final long INTERVAL = 5000;
+public class AutoSwitchingServiceLowBattery extends Service {
+    private static final int ID_SERVICE = 102;
+    private final long DELAY = 200;
+    private final long INTERVAL = 10000;
     private final int THRESHOLD = 5; // Switching threshold
 
     private Model model;

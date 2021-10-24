@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.project.swapper.database.DatabaseManager;
 import com.project.swapper.network.AutoSwitchingService;
+import com.project.swapper.network.AutoSwitchingServiceLowBattery;
 import com.project.swapper.network.NetworkManager;
 import com.project.swapper.security.EncryptionManager;
 
@@ -78,15 +79,25 @@ public class Model {
             if (AutoSwitchingService.class.getName().equals(service.service.getClassName())) {
                 return true;
             }
+            if (AutoSwitchingServiceLowBattery.class.getName().equals(
+                    service.service.getClassName())) {
+                return true;
+            }
         }
         return false;
     }
 
     /**
      * Starts the service.
+     * @param lowBattery if running low battery mode.
      */
-    public void startService() {
-        Intent intent = new Intent(context, AutoSwitchingService.class);
+    public void startService(boolean lowBattery) {
+        Intent intent;
+        if (lowBattery) {
+            intent = new Intent(context, AutoSwitchingServiceLowBattery.class);
+        } else {
+            intent = new Intent(context, AutoSwitchingService.class);
+        }
         context.startService(intent);
     }
 

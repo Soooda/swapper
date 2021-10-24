@@ -29,5 +29,6 @@
             </intent-filter>
         </activity>
         <service android:name=".network.AutoSwitchingService" />
+        <service android:name=".network.AutoSwitchingServiceLowBattery" />
     </application>
 </manifest>
