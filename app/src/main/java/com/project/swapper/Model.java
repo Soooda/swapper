@@ -79,6 +79,9 @@ public class Model {
     public void stopService() {
         Intent intent = new Intent(context, AutoSwitchingService.class);
         context.stopService(intent);
+
+        network.disconnect();
+        network.disableWIFI();
     }
 
     /*

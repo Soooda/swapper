@@ -8,6 +8,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,15 +20,14 @@ public class NetworkManager {
     private ConnectivityManager mConnectivityManager;
     private Context mContext;
     private List<ScanResult> mScanBuffer;
-    // The BSSID of the current connected WAP, null if no connection
-    private String currentWAP;
+    private List<Integer> networkIDs; // Stores all the connected WIFI configuration ids
 
     public NetworkManager(Context context) {
         mContext = context;
         mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         mConnectivityManager = (ConnectivityManager) mContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
-        currentWAP = null;
+        networkIDs = new ArrayList<>();
     }
 
     /**
@@ -42,7 +42,6 @@ public class NetworkManager {
      */
     public void disableWIFI() {
         mWifiManager.disconnect();
-        currentWAP = null;
         mWifiManager.setWifiEnabled(false);
     }
 
@@ -94,13 +93,14 @@ public class NetworkManager {
         mWifiManager.disconnect();
         // Init
         WifiConfiguration conf = new WifiConfiguration();
+        conf.BSSID = bssid;
 
-        for (ScanResult s : mScanBuffer) {
-            if (s.BSSID.equals(bssid)) {
-                conf.SSID = s.SSID;
-                break;
-            }
-        }
+//        for (ScanResult s : mScanBuffer) {
+//            if (s.BSSID.equals(bssid)) {
+//                conf.SSID = s.SSID;
+//                break;
+//            }
+//        }
 
         conf.status = WifiConfiguration.Status.DISABLED;
         conf.priority = 40;
@@ -129,7 +129,10 @@ public class NetworkManager {
         int networkId = mWifiManager.addNetwork(conf);
         if (networkId != -1) {
             mWifiManager.enableNetwork(networkId, true);
-            currentWAP = bssid;
+            if (!networkIDs.contains((Integer) networkId)) {
+                networkIDs.add(networkId);
+//                System.out.println(networkId + " added!");
+            }
         } else {
             Log.e("NetworkManager", "Cannot connect to " + bssid);
         }
@@ -140,5 +143,10 @@ public class NetworkManager {
      */
     public void disconnect() {
         mWifiManager.disconnect();
+        // Remove all the created WIFIConfiguration
+        for (int i : networkIDs) {
+            mWifiManager.removeNetwork(i);
+        }
+        networkIDs.clear();
     }
 }
