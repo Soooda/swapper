@@ -111,7 +111,7 @@ public class AutoSwitchingService extends Service {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
                     this, NOTIFICATION_CHANNEL_ID);
             Notification notification = notificationBuilder.setOngoing(true)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setSmallIcon(R.mipmap.logo_foreground)
                     .setContentTitle("sWAPper is running!")
                     .setPriority(NotificationManager.IMPORTANCE_MIN)
                     .setCategory(Notification.CATEGORY_SERVICE)
