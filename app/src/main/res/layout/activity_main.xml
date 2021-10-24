@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <ImageView
+        android:id="@+id/logo_img"
         android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@mipmap/logo_foreground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+    />
+
+<!--    https://stackoverflow.com/questions/23358822/how-to-custom-switch-button-->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/Switch"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        app:showText="true"
+        android:textSize="60sp"
+        app:track="@drawable/custom_track"
+        android:thumb="@drawable/custom_thumb"
+        app:layout_constraintTop_toBottomOf="@+id/logo_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/service_status"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btm_toolbar"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/colorOnBackground"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Switch"
+    />
 
-        <ImageButton
-            android:id="@+id/graph_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:src="@drawable/ic_baseline_bar_chart_24" />
+    <TextView
+        android:id="@+id/battery_label"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Low Battery Mode"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/battery"
+        app:layout_constraintTop_toBottomOf="@+id/service_status"
+        app:layout_constraintBottom_toTopOf="@id/wifi"
+    />
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/battery"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/battery_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_status"
+        app:layout_constraintBottom_toTopOf="@id/wifi"
+    />
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/top_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorOnBackground"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/toolbar_title"
-            android:text="Wrapper"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="40dp"
-            android:textColor="@android:color/background_light"/>
-
-        <ImageButton
-            android:id="@+id/Search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:src="@drawable/ic_baseline_search_24" />
-
-        <ImageButton
-            android:id="@+id/Settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_baseline_settings_24" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <ListView
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:layout_marginBottom="?android:attr/actionBarSize"
-        android:id="@+id/results_listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </ListView>
-
-
-
-</RelativeLayout>
+    <ImageButton
+        android:id="@+id/wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_wifi_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_status"
+        app:layout_constraintBottom_toBottomOf="parent"
+    />
+</androidx.constraintlayout.widget.ConstraintLayout>
