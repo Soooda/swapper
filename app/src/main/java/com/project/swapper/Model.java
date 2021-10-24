@@ -23,6 +23,7 @@ import javax.crypto.NoSuchPaddingException;
  * The overall entry point of all back-end functionalities.
  */
 public class Model {
+    private static Model model = null;
     private Context context;
     private EncryptionManager enc;
     private NetworkManager network;
@@ -42,6 +43,22 @@ public class Model {
         this.network = new NetworkManager(context);
         // Database Manager Init
         this.db = new DatabaseManager(context);
+    }
+
+    /**
+     * Creates a singleton model object.
+     * @param context The Application Context.
+     */
+    public static void createInstance(Context context) {
+        model = new Model(context);
+    }
+
+    /**
+     * Modified Singleton Pattern.
+     * @return The model object.
+     */
+    public static Model getInstance() {
+        return model;
     }
 
     /*

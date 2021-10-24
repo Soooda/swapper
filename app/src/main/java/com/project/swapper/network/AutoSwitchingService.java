@@ -121,7 +121,12 @@ public class AutoSwitchingService extends Service {
             startForeground(ID_SERVICE, new Notification());
         }
 
-        this.model = new Model(getApplicationContext());
+        this.model = Model.getInstance();
+        if (this.model == null) {
+            Log.e("AutoSwitchingService", "Unable to get Model instance, service shuts down!");
+            stopSelf();
+        }
+
         Log.i("AutoSwitchingService", "Service Spawned!");
     }
 
