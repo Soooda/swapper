@@ -1,9 +1,14 @@
 package com.project.swapper.network;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.wifi.ScanResult;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -91,16 +96,31 @@ public class AutoSwitchingService extends Service {
         timer = new Timer();
 
         // Create the Notification
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
-                "");
-        Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("sWAPper is running!")
-                .setPriority(NotificationCompat.PRIORITY_MIN)
-                .setCategory(NotificationCompat.CATEGORY_SERVICE)
-                .build();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String NOTIFICATION_CHANNEL_ID = "com.project.swapper";
+            String channelName = "sWAPper";
+            NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName,
+                    NotificationManager.IMPORTANCE_NONE);
+            chan.setLightColor(Color.BLUE);
+            chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            NotificationManager manager = (NotificationManager) getApplicationContext()
+                    .getSystemService(Context.NOTIFICATION_SERVICE);
+            assert manager != null;
+            manager.createNotificationChannel(chan);
 
-        startForeground(ID_SERVICE, notification);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
+                    this, NOTIFICATION_CHANNEL_ID);
+            Notification notification = notificationBuilder.setOngoing(true)
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentTitle("sWAPper is running!")
+                    .setPriority(NotificationManager.IMPORTANCE_MIN)
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .build();
+            startForeground(ID_SERVICE, notification);
+        } else {
+            startForeground(ID_SERVICE, new Notification());
+        }
+
         this.model = new Model(getApplicationContext());
         Log.i("AutoSwitchingService", "Service Spawned!");
     }
@@ -108,7 +128,6 @@ public class AutoSwitchingService extends Service {
     @Override
     public void onDestroy() {
         timer.cancel();
-        model.networkDisconnect();
         super.onDestroy();
         Log.i("AutoSwitchingService", "Service Terminated!");
     }
