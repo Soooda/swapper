@@ -108,6 +108,7 @@ public class AutoSwitchingService extends Service {
     @Override
     public void onDestroy() {
         timer.cancel();
+        model.networkDisconnect();
         super.onDestroy();
         Log.i("AutoSwitchingService", "Service Terminated!");
     }

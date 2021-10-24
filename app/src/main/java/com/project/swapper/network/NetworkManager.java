@@ -134,4 +134,11 @@ public class NetworkManager {
             Log.e("NetworkManager", "Cannot connect to " + bssid);
         }
     }
+
+    /**
+     * Disconnects from the current connection.
+     */
+    public void disconnect() {
+        mWifiManager.disconnect();
+    }
 }

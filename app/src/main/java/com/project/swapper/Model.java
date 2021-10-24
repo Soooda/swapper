@@ -68,7 +68,7 @@ public class Model {
     /**
      * Starts the service.
      */
-    public void runService() {
+    public void startService() {
         Intent intent = new Intent(context, AutoSwitchingService.class);
         context.startService(intent);
     }
@@ -205,5 +205,12 @@ public class Model {
      */
     public void networkConnect(String bssid, String password) {
         network.add(bssid, password);
+    }
+
+    /**
+     * Disconnects from the current connection.
+     */
+    public void networkDisconnect() {
+        network.disconnect();
     }
 }
