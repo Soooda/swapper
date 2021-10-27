@@ -1,6 +1,7 @@
 package com.project.swapper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.SwitchCompat;
+
+import com.project.swapper.view.NetworkInfoActivity;
 
 public class MainActivity extends Activity {
     private Model model;
@@ -71,7 +74,9 @@ public class MainActivity extends Activity {
         wifiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this,
+                        NetworkInfoActivity.class);
+                startActivity(intent);
             }
         });
     }

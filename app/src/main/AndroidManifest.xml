@@ -17,7 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Swapper">
         <activity
-            android:name=".GraphActivity"
+            android:name=".view.GraphActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.NetworkInfoActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

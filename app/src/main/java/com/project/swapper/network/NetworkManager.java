@@ -7,8 +7,10 @@ import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -50,6 +52,11 @@ public class NetworkManager {
      * @return Nearby WAPs.
      */
     public List<ScanResult> scan() {
+        // If WIFI is disabled
+        if (!isConnectedToWIFI()) {
+            Toast.makeText(mContext, "Please enable WIFI first!", Toast.LENGTH_SHORT).show();
+            return Collections.EMPTY_LIST;
+        }
         mScanBuffer = mWifiManager.getScanResults();
         return mScanBuffer;
     }
@@ -68,7 +75,7 @@ public class NetworkManager {
 
     /**
      * Gets the BSSID of current connected WAP.
-     * @return BSSID as a string.
+     * @return BSSID as a string or null if not connected.
      */
     public String getCurrentBSSID() {
         WifiInfo info = mWifiManager.getConnectionInfo();
