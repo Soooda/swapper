@@ -103,10 +103,16 @@ public class Model {
 
     /**
      * Stops the service.
+     * @param isLowBattery If the low battery mode is turned on.
      */
-    public void stopService() {
-        Intent intent = new Intent(context, AutoSwitchingService.class);
-        context.stopService(intent);
+    public void stopService(boolean isLowBattery) {
+        if (isLowBattery) {
+            Intent intent = new Intent(context, AutoSwitchingServiceLowBattery.class);
+            context.stopService(intent);
+        } else {
+            Intent intent = new Intent(context, AutoSwitchingService.class);
+            context.stopService(intent);
+        }
 
         network.disconnect();
         network.disableWIFI();
