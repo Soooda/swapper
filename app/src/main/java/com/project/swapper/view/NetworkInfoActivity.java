@@ -50,7 +50,10 @@ public class NetworkInfoActivity extends Activity {
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                waps = model.networkScan();
+                waps.clear();
+                for (ScanResult s : model.networkScan()) {
+                    waps.add(s);
+                }
                 adapter.notifyDataSetChanged();
             }
         });
