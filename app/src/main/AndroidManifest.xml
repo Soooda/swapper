@@ -23,6 +23,9 @@
             android:name=".view.NetworkInfoActivity"
             android:exported="true" />
         <activity
+            android:name=".view.AddNetworkActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

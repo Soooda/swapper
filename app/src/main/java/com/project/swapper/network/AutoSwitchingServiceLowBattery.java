@@ -25,7 +25,7 @@ import java.util.TimerTask;
 public class AutoSwitchingServiceLowBattery extends Service {
     private static final int ID_SERVICE = 102;
     private final long DELAY = 200;
-    private final long INTERVAL = 10000;
+    private final long INTERVAL = 5000;
     private final int THRESHOLD = 5; // Switching threshold
 
     private Model model;
