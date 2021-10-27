@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
                 } else {
                     serviceStatus.setText("The service is stopped!");
                     serviceStatus.setTextColor(Color.RED);
-                    model.stopService();
+                    model.stopService(batterySwitch.isChecked());
                 }
             }
         });
