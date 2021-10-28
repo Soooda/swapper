@@ -105,11 +105,7 @@ public class GraphActivity extends AppCompatActivity {
 
             int transformedLevelVal = 100 - Math.abs(actualLevel);
 
-            String ssid = waps.get(i).SSID;
-
-            ssid = ssid.substring(0, 14);
-
-            wiFiNames.add(ssid);
+            wiFiNames.add(waps.get(i).SSID);
 
             double x = i;
             double y = (double)transformedLevelVal;
