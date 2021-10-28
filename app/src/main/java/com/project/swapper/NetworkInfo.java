@@ -23,7 +23,7 @@ public class NetworkInfo extends AppCompatActivity {
     TextView subMask;
     String routerText = "192.168.1.1";
     TextView routerView;
-    SwitchCompat autoJoinValue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +42,6 @@ public class NetworkInfo extends AppCompatActivity {
         routerView = (TextView) findViewById(R.id.router);
         routerView.setText(routerText);
 
-        autoJoinValue = (SwitchCompat) findViewById(R.id.sw_auto_join);
-        autoJoinValue.setShowText(false);
-
-        SwitchCompat swAutoJoin = findViewById(R.id.sw_auto_join);
-        
-        swAutoJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NetworkInfo.this, MainActivity.class);
-                Toast.makeText(getApplicationContext(), "Auto Join: " + autoJoinValue, Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
         Button btnForget = findViewById(R.id.btn_forget);
 
         btnForget.setOnClickListener(new View.OnClickListener() {
@@ -66,25 +53,5 @@ public class NetworkInfo extends AppCompatActivity {
             }
         });
 
-        Button btnBlock = findViewById(R.id.btn_block);
-
-        btnBlock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NetworkInfo.this, MainActivity.class);
-                Toast.makeText(getApplicationContext(), "Block: " + networkNameText, Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
-
-        Button btnBack = findViewById(R.id.btn_back);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NetworkInfo.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
