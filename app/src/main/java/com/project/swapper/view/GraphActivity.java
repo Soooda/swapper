@@ -1,4 +1,4 @@
-package com.project.swapper;
+package com.project.swapper.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -15,6 +15,7 @@ import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.project.swapper.R;
 
 import java.util.ArrayList;
 import java.util.Random;

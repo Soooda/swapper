@@ -1,16 +1,17 @@
 package com.project.swapper.security;
 
+import android.provider.Settings;
 import android.util.Base64;
 
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * This class handles both encryption and decryption of text.
@@ -20,12 +21,15 @@ public class EncryptionManager {
     // AES cipher
     private Cipher cipher;
     // Key
-    private SecretKey secret;
+    private SecretKeySpec secret;
 
-    public EncryptionManager() throws NoSuchAlgorithmException, NoSuchPaddingException {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-        keyGenerator.init(128); // block size is 128 bits
-        this.secret = keyGenerator.generateKey();
+    public EncryptionManager() throws NoSuchPaddingException, NoSuchAlgorithmException {
+        String id = Settings.Secure.ANDROID_ID;
+        // Padding
+        while (id.length() != 16) {
+            id = id + " ";
+        }
+        this.secret = new SecretKeySpec(id.getBytes(StandardCharsets.UTF_8), "AES");
         this.cipher = Cipher.getInstance("AES");
     }
 
