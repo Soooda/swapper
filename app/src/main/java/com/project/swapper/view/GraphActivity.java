@@ -89,9 +89,15 @@ public class GraphActivity extends AppCompatActivity {
         wiFiNames = new ArrayList<>();
 
         int wapsSize = waps.size();
+
+        // Only show 4 maximum signals
+        if (wapsSize > 4) {
+            wapsSize = 4;
+        }
+
         DataPoint[] values = new DataPoint[wapsSize];
 
-        for (int i = 0; i < waps.size(); i++) {
+        for (int i = 0; i < wapsSize; i++) {
             int actualLevel = waps.get(i).level;
 
             /*
