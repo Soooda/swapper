@@ -22,7 +22,7 @@ public class EncryptionManagerTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void testConstructor1() {
         try {
             new EncryptionManager();
             assertNotNull(manager);

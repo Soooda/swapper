@@ -1,15 +1,17 @@
 package com.project.swapper;
 
 import android.app.Activity;
-import android.os.Bundle;
-
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+<<<<<<< HEAD
+import androidx.appcompat.widget.SwitchCompat;
+=======
 import com.project.swapper.security.Network;
 import com.project.swapper.security.NetworkListAdapter;
 
@@ -18,9 +20,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+>>>>>>> main
 
+import com.project.swapper.view.NetworkInfoActivity;
+
+<<<<<<< HEAD
 public class MainActivity extends Activity {
+    private Model model;
 
+    private SwitchCompat serviceSwitch;
+    private TextView serviceStatus;
+    private SwitchCompat batterySwitch;
+    private ImageButton wifiButton;
+=======
     Network network1 = new Network("network1", true, true, 0);
     Network network2 = new Network("network2", false, false, 0);
     Network network3 = new Network("network3", false, true, 0);
@@ -29,11 +41,25 @@ public class MainActivity extends Activity {
     Network network6 = new Network("network6", false, true, 0);
     Network network7 = new Network("network7", false, true, 0);
     Network network8 = new Network("network8", false, true, 0);
+>>>>>>> main
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Uses "activity_main.xml" as the layout
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
+
+        // Model Init
+        Model.createInstance(this);
+        this.model = Model.getInstance();
+
+        // Binds widgets
+        serviceSwitch = findViewById(R.id.Switch);
+        serviceStatus = findViewById(R.id.service_status);
+        batterySwitch = findViewById(R.id.battery);
+        wifiButton = findViewById(R.id.wifi);
+=======
 
         ImageButton btnGraphView = findViewById(R.id.graph_view);
 
@@ -49,33 +75,53 @@ public class MainActivity extends Activity {
         NetworkList.add(network8);
         NetworkListAdapter adapter = new NetworkListAdapter(this, R.layout.list_item, NetworkList);
         resultsListView.setAdapter(adapter);
+>>>>>>> main
 
-        btnGraphView.setOnClickListener(new View.OnClickListener() {
+        // If the service is already running
+        if (model.isServiceRunning()) {
+            serviceStatus.setText("The service is running!");
+            serviceStatus.setTextColor(Color.GREEN);
+            serviceSwitch.setChecked(true);
+        } else {
+            serviceStatus.setText("The service is stopped!");
+            serviceStatus.setTextColor(Color.RED);
+            serviceSwitch.setChecked(false);
+        }
+        serviceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GraphActivity.class);
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    // If WIFI is disabled
+                    if (!model.networkIsConnectedToWIFI()) {
+                        serviceStatus.setText("WIFI is disabled!");
+                        serviceStatus.setTextColor(Color.LTGRAY);
+                        serviceSwitch.setChecked(false);
+                        return;
+                    }
+
+                    serviceStatus.setText("The service is running!");
+                    serviceStatus.setTextColor(Color.GREEN);
+                    // Runs service based on battery mode
+                    model.startService(batterySwitch.isChecked());
+                } else {
+                    serviceStatus.setText("The service is stopped!");
+                    serviceStatus.setTextColor(Color.RED);
+                    model.stopService(batterySwitch.isChecked());
+                }
+            }
+        });
+
+        wifiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,
+                        NetworkInfoActivity.class);
                 startActivity(intent);
             }
         });
     }
+<<<<<<< HEAD
+=======
 
-    public SimpleAdapter NetworkList(String[] networkName){
-        HashMap<String, String> name = new HashMap<>();
-        for(int i = 0; i < networkName.length; i ++){
-            name.put("network " + (i+1), "name: " + networkName[i]);
-        }
-        List<HashMap<String, String>> listItems = new ArrayList<>();
-        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.list_item,
-                new String[]{"First Line", "Second Line"}, new int[]{R.id.text1, R.id.text2});
-        Iterator it = name.entrySet().iterator();
-        while(it.hasNext()){
-            HashMap<String, String> resultsMap = new HashMap<>();
-            Map.Entry pair = (Map.Entry) it.next();
-            resultsMap.put("First Line", pair.getKey().toString());
-            resultsMap.put("Second Line", pair.getValue().toString());
-            listItems.add(resultsMap);
-        }
-        return adapter;
-    }
-
+>>>>>>> main
 }
