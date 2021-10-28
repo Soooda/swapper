@@ -1,34 +1,38 @@
 package com.project.swapper.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
+import android.net.wifi.ScanResult;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
-import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.project.swapper.Model;
 import com.project.swapper.R;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
     private BarGraphSeries<DataPoint> series;
+    private Model model;
+    private List<ScanResult> waps;
+    private ArrayList<String> wiFiNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_graph);
+
+        model = Model.getInstance();
+        waps = model.networkScan();
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
         series = new BarGraphSeries<>(generateData());
@@ -36,9 +40,6 @@ public class GraphActivity extends AppCompatActivity {
         graph.addSeries(series);
 
         series.setTitle("WiFi Strength");
-
-        //graph.getGridLabelRenderer().setHorizontalAxisTitle("WiFis");
-        //graph.getGridLabelRenderer().setVerticalAxisTitle("Strength");
 
         // styling
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
@@ -48,12 +49,18 @@ public class GraphActivity extends AppCompatActivity {
                 int green = 0;
                 int blue = 0;
 
-                if (data.getY() <= 5) {
-                    red = 255;
-                } else if (data.getY() > 5 && data.getY() <= 7) {
-                    blue = 255;
-                } else if (data.getY() > 7) {
-                    green = 255;
+                if (data.getY() <= 10) {
+                    red = 206;
+                    green = 77;
+                    blue = 69;
+                } else if (data.getY() > 10 && data.getY() < 70) {
+                    red = 10;
+                    green = 123;
+                    blue = 131;
+                } else if (data.getY() >= 70) {
+                    red = 42;
+                    green = 168;
+                    blue = 118;
                 }
 
                 return Color.rgb(red, green, blue);
@@ -65,45 +72,54 @@ public class GraphActivity extends AppCompatActivity {
         // draw values on top
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.BLUE);
-        //series.setValuesOnTopSize(50);
+
+        String[] wiFis = new String[] {};
+        wiFis = wiFiNames.toArray(new String[wiFiNames.size()]);
+
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[]{"WIFI_A", "WIFI_B", "WIFI_C", "WIFI_D", "WIFI_E"});
-        //graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);
+        staticLabelsFormatter.setHorizontalLabels(wiFis);
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         graph.getGridLabelRenderer().setTextSize(30f);
         graph.getGridLabelRenderer().reloadStyles();
     }
 
     private DataPoint[] generateData() {
-        int count = 5;
-        DataPoint[] values = new DataPoint[count];
-        for (int i=0; i<count; i++) {
+        // Init WiFi names
+        wiFiNames = new ArrayList<>();
+
+        int wapsSize = waps.size();
+        DataPoint[] values = new DataPoint[wapsSize];
+
+        for (int i = 0; i < waps.size(); i++) {
+            int actualLevel = waps.get(i).level;
+
+            /*
+                Transform negative values to positive
+                transformedLevelVal = 100 - Math.abs(actualLevel);
+            */
+
+            int transformedLevelVal = 100 - Math.abs(actualLevel);
+            wiFiNames.add(waps.get(i).SSID);
+
             double x = i;
-            double y = mRand.nextInt(10) + 1;
+            double y = (double)transformedLevelVal;
+
             DataPoint v = new DataPoint(x, y);
             values[i] = v;
         }
+
         return values;
     }
 
-    Random mRand = new Random();
+    //Refresh
+    public void refresh(View view) {
+        wiFiNames = new ArrayList<>();
 
-    private Runnable mTimer = new Runnable() {
-        @Override
-        public void run() {
-            series.resetData(generateData());
-            mHandler.postDelayed(this, 1000);
+        waps.clear();
+        for (ScanResult s : model.networkScan()) {
+            waps.add(s);
         }
-    };
-
-    public void startSignal(View view) {
-        mHandler.postDelayed(mTimer, 1000);
     }
-
-    public void stopSignal(View view) {
-        mHandler.removeCallbacks(mTimer);
-    }
-
 
 }
