@@ -81,9 +81,9 @@ public class GraphActivity extends AppCompatActivity {
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(wiFis);
 
-        graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(270);
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        graph.getGridLabelRenderer().setTextSize(30f);
+        graph.getGridLabelRenderer().setTextSize(10f);
         graph.getGridLabelRenderer().reloadStyles();
     }
 
@@ -104,7 +104,12 @@ public class GraphActivity extends AppCompatActivity {
             */
 
             int transformedLevelVal = 100 - Math.abs(actualLevel);
-            wiFiNames.add(waps.get(i).SSID);
+
+            String ssid = waps.get(i).SSID;
+
+            ssid = ssid.substring(0, 14);
+
+            wiFiNames.add(ssid);
 
             double x = i;
             double y = (double)transformedLevelVal;
@@ -133,9 +138,9 @@ public class GraphActivity extends AppCompatActivity {
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(wiFis);
 
-        graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(270);
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        graph.getGridLabelRenderer().setTextSize(30f);
+        graph.getGridLabelRenderer().setTextSize(10f);
         graph.getGridLabelRenderer().reloadStyles();
     }
 
