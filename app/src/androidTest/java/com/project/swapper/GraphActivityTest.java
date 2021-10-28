@@ -35,15 +35,6 @@ public class GraphActivityTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void graphActivityTest() {
-        ViewInteraction view = onView(
-                allOf(withId(R.id.graph),
-                        withParent(withParent(withId(android.R.id.content))),
-                        isDisplayed()));
-        view.check(matches(isDisplayed()));
-    }
-
-    @Test
     public void testRefreshButtonExist() {
         model = Model.getInstance();
         if (model.networkIsConnectedToWIFI()) {

@@ -74,9 +74,11 @@ public class NetworkInfoActivityTest {
     @Test
     public void testAllFirstListElementsExist() {
         model = Model.getInstance();
-        waps = model.networkScan();
-
         if (model.networkIsConnectedToWIFI()) {
+
+            // Scan the network
+            waps = model.networkScan();
+
             // Click Main Switch Button
             ViewInteraction mainSwitch = onView(withId(R.id.Switch));
             mainSwitch.perform(click());
