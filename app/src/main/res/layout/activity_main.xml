@@ -9,7 +9,6 @@
     <ImageView
         android:id="@+id/logo_img"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="400dp"
         android:src="@mipmap/logo_foreground"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,71 +31,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
     />
-=======
-        android:layout_height="wrap_content"
-        android:id="@+id/btm_toolbar"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
-
-        <ImageButton
-            android:id="@+id/graph_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_baseline_bar_chart_24"
-            android:contentDescription="@string/strength_button" />
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/top_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@android:color/background_light"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/Search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:src="@drawable/ic_baseline_search_24"
-            android:contentDescription="@string/search_button" />
-
-        <ImageButton
-            android:id="@+id/Settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:src="@drawable/ic_baseline_settings_24"
-            android:contentDescription="@string/settings_button" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <ListView
-        android:id="@+id/results_listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:layout_marginBottom="?android:attr/actionBarSize">
-
-    </ListView>
->>>>>>> main
-
     <TextView
         android:id="@+id/service_status"
         android:layout_width="wrap_content"
