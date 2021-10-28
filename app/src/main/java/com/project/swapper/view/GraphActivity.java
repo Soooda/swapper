@@ -24,6 +24,7 @@ public class GraphActivity extends AppCompatActivity {
     private Model model;
     private List<ScanResult> waps;
     private ArrayList<String> wiFiNames;
+    GraphView graph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class GraphActivity extends AppCompatActivity {
         model = Model.getInstance();
         waps = model.networkScan();
 
-        GraphView graph = (GraphView) findViewById(R.id.graph);
+        graph = (GraphView) findViewById(R.id.graph);
         series = new BarGraphSeries<>(generateData());
 
         graph.addSeries(series);
@@ -79,6 +80,8 @@ public class GraphActivity extends AppCompatActivity {
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(wiFis);
+
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         graph.getGridLabelRenderer().setTextSize(30f);
         graph.getGridLabelRenderer().reloadStyles();
@@ -89,11 +92,6 @@ public class GraphActivity extends AppCompatActivity {
         wiFiNames = new ArrayList<>();
 
         int wapsSize = waps.size();
-
-        // Only show 4 maximum signals
-        if (wapsSize > 4) {
-            wapsSize = 4;
-        }
 
         DataPoint[] values = new DataPoint[wapsSize];
 
@@ -126,6 +124,19 @@ public class GraphActivity extends AppCompatActivity {
         for (ScanResult s : model.networkScan()) {
             waps.add(s);
         }
+
+        series.resetData(generateData());
+
+        String[] wiFis = new String[] {};
+        wiFis = wiFiNames.toArray(new String[wiFiNames.size()]);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(wiFis);
+
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(90);
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        graph.getGridLabelRenderer().setTextSize(30f);
+        graph.getGridLabelRenderer().reloadStyles();
     }
 
 }
